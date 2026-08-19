@@ -1,0 +1,12 @@
+node_modules/
+dist/
+build/
+.angular/
+coverage/
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+packages/shared/dist/
+server/src/generated/

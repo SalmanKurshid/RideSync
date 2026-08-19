@@ -1,0 +1,185 @@
+/* RideSync — global design tokens and primitives.
+   Instrument-cluster thinking: numbers are the content, so they get the
+   tabular figures and the strongest contrast. Colour carries state. */
+
+:root {
+  color-scheme: light dark;
+
+  /* Ground and ink — neutrals biased slightly green, to sit with the accent. */
+  --paper: #f4f7f5;
+  --surface: #ffffff;
+  --surface-2: #eaf0ed;
+  --ink: #0f1a18;
+  --ink-2: #3a4b47;
+  --ink-3: #6b7c78;
+  --line: #dbe4e0;
+  --line-2: #c3d0cb;
+
+  /* Petrol — oxidised copper-teal, the brand accent. */
+  --accent: #0b6e63;
+  --accent-hover: #095b52;
+  --accent-soft: #e1efec;
+  --accent-line: #9cc9c1;
+  --on-accent: #ffffff;
+
+  /* Semantic state, kept distinct from the accent. */
+  --ok: #26714a;
+  --ok-soft: #e1f0e7;
+  --warn: #8f5a08;
+  --warn-soft: #f9eeda;
+  --risk: #a33628;
+  --risk-soft: #fae8e5;
+
+  --radius: 6px;
+  --radius-sm: 4px;
+  --shadow: 0 1px 2px rgb(15 26 24 / 6%), 0 4px 12px rgb(15 26 24 / 4%);
+
+  --font-body: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0b1312;
+    --surface: #111c1a;
+    --surface-2: #182523;
+    --ink: #e7eeec;
+    --ink-2: #b3c2be;
+    --ink-3: #82938e;
+    --line: #233130;
+    --line-2: #31433f;
+
+    --accent: #4ec5b2;
+    --accent-hover: #63d3c1;
+    --accent-soft: #0f2f2b;
+    --accent-line: #1f5b53;
+    --on-accent: #06201c;
+
+    --ok: #63c289;
+    --ok-soft: #11291c;
+    --warn: #e2a94e;
+    --warn-soft: #2c2312;
+    --risk: #ef8b7a;
+    --risk-soft: #321b17;
+
+    --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 4px 14px rgb(0 0 0 / 24%);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  text-wrap: balance;
+}
+
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.2rem; }
+h3 { font-size: 1rem; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Digits line up in columns wherever money and fuel are shown. */
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* ---------- form primitives ---------- */
+
+.field { display: grid; gap: 0.35rem; }
+
+.field label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.field input[aria-invalid='true'] { border-color: var(--risk); }
+
+.field .hint { font-size: 0.78rem; color: var(--ink-3); }
+.field .error { font-size: 0.78rem; color: var(--risk); }
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.1rem;
+  font: inherit;
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease, opacity 0.12s ease;
+}
+
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:not(:disabled):hover { background: var(--accent-hover); }
+
+.btn-ghost { background: transparent; color: var(--ink-2); border-color: var(--line-2); }
+.btn-ghost:not(:disabled):hover { background: var(--surface-2); }
+
+.btn-danger { background: transparent; color: var(--risk); border-color: var(--risk); }
+
+/* ---------- surfaces ---------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.alert {
+  padding: 0.7rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  border: 1px solid;
+}
+
+.alert-error { background: var(--risk-soft); border-color: var(--risk); color: var(--risk); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

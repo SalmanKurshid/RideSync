@@ -1,0 +1,26 @@
+{
+  "name": "ridesync",
+  "version": "0.1.0",
+  "private": true,
+  "description": "RideSync — personal motorcycle trip planning and management system",
+  "workspaces": [
+    "packages/*",
+    "server",
+    "client"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "db:up": "docker start ridesync-pg || docker run -d --name ridesync-pg -e POSTGRES_USER=ridesync -e POSTGRES_PASSWORD=ridesync -e POSTGRES_DB=ridesync -p 5455:5432 pgvector/pgvector:pg16",
+    "db:down": "docker stop ridesync-pg",
+    "db:status": "docker exec ridesync-pg pg_isready -U ridesync -d ridesync",
+    "db:psql": "docker exec -it ridesync-pg psql -U ridesync -d ridesync",
+    "db:logs": "docker logs -f ridesync-pg",
+    "shared:build": "npm run build -w @ridesync/shared",
+    "shared:watch": "npm run watch -w @ridesync/shared",
+    "server:dev": "npm run dev -w @ridesync/server",
+    "client:dev": "npm run start -w @ridesync/client",
+    "test": "npm run test -w @ridesync/shared && npm run test -w @ridesync/server"
+  }
+}

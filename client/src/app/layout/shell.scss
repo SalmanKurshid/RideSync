@@ -1,0 +1,71 @@
+.shell {
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  min-height: 100dvh;
+}
+
+aside {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1.5rem;
+  padding: 1.5rem 1rem;
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+}
+
+.brand { display: block; }
+.brand:hover { text-decoration: none; }
+
+.brand .mark {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+nav { display: grid; gap: 0.15rem; align-content: start; }
+
+nav a {
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-sm);
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+nav a:hover { background: var(--surface-2); text-decoration: none; }
+nav a.active { background: var(--accent-soft); color: var(--accent); }
+
+.rider { display: grid; gap: 0.6rem; }
+
+.who { display: grid; gap: 0.1rem; min-width: 0; }
+
+.who .name { font-size: 0.88rem; font-weight: 600; }
+
+.who .email {
+  font-size: 0.76rem;
+  color: var(--ink-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+main { padding: 2rem; min-width: 0; }
+
+@media (max-width: 720px) {
+  .shell { grid-template-columns: 1fr; }
+  aside {
+    grid-template-rows: auto;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 0.85rem 1rem;
+  }
+  nav { grid-auto-flow: column; justify-content: start; }
+  .rider { grid-auto-flow: column; align-items: center; }
+  .who { display: none; }
+  main { padding: 1.25rem; }
+}
