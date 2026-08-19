@@ -1,7 +1,8 @@
 import { Decimal, SCALE } from '@ridesync/shared';
 import type { DecimalString } from '@ridesync/shared';
 
-type DecimalLike = { toFixed(dp: number): string } | Decimal | string | number;
+/** Prisma hands back Decimal; tests and callers may hand back strings or numbers. */
+type DecimalLike = Decimal | string | number | { toString(): string };
 
 const at = (value: DecimalLike, scale: number): DecimalString =>
   value instanceof Decimal
@@ -15,6 +16,7 @@ const at = (value: DecimalLike, scale: number): DecimalString =>
 export const asMoney = (value: DecimalLike): DecimalString => at(value, SCALE.money);
 export const asLitres = (value: DecimalLike): DecimalString => at(value, SCALE.litres);
 export const asDistance = (value: DecimalLike): DecimalString => at(value, SCALE.distance);
+export const asOdometer = (value: DecimalLike): DecimalString => at(value, SCALE.odometer);
 export const asMileage = (value: DecimalLike): DecimalString => at(value, SCALE.mileage);
 
 export const asNullableMoney = (value: DecimalLike | null | undefined): DecimalString | null =>
@@ -22,6 +24,9 @@ export const asNullableMoney = (value: DecimalLike | null | undefined): DecimalS
 
 export const asNullableDistance = (value: DecimalLike | null | undefined): DecimalString | null =>
   value === null || value === undefined ? null : asDistance(value);
+
+export const asNullableOdometer = (value: DecimalLike | null | undefined): DecimalString | null =>
+  value === null || value === undefined ? null : asOdometer(value);
 
 export const asNullableMileage = (value: DecimalLike | null | undefined): DecimalString | null =>
   value === null || value === undefined ? null : asMileage(value);

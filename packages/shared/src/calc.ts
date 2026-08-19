@@ -14,6 +14,8 @@ export const SCALE = {
   money: 2,
   litres: 3,
   distance: 2,
+  /** Odometer readings are numeric(10,1) — whole-tenths of a kilometre. */
+  odometer: 1,
   mileage: 2,
 } as const;
 
@@ -29,6 +31,7 @@ function round(value: Decimal, decimalPlaces: number): Decimal {
 export const roundMoney = (value: Numeric): Decimal => round(toDecimal(value), SCALE.money);
 export const roundLitres = (value: Numeric): Decimal => round(toDecimal(value), SCALE.litres);
 export const roundDistance = (value: Numeric): Decimal => round(toDecimal(value), SCALE.distance);
+export const roundOdometer = (value: Numeric): Decimal => round(toDecimal(value), SCALE.odometer);
 export const roundMileage = (value: Numeric): Decimal => round(toDecimal(value), SCALE.mileage);
 
 /** Serialise for JSON. Decimals travel as strings so they never pass through a float. */

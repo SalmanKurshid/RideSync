@@ -99,7 +99,13 @@ a:hover { text-decoration: underline; }
 
 /* ---------- form primitives ---------- */
 
-.field { display: grid; gap: 0.35rem; }
+.field {
+  display: grid;
+  gap: 0.35rem;
+  /* Pack rows at the top so an input never stretches to match a taller
+     neighbouring field that carries a hint or error line. */
+  align-content: start;
+}
 
 .field label {
   font-size: 0.72rem;

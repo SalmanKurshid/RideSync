@@ -44,8 +44,11 @@ export class Shell {
   protected readonly auth = inject(AuthStore);
   private readonly router = inject(Router);
 
-  // Bikes and trips arrive in phases 2 and 3.
-  protected readonly nav: readonly NavItem[] = [{ path: '/dashboard', label: 'Dashboard' }];
+  // Trips arrive in phase 3.
+  protected readonly nav: readonly NavItem[] = [
+    { path: '/dashboard', label: 'Dashboard' },
+    { path: '/bikes', label: 'Garage' },
+  ];
 
   protected signOut(): void {
     this.auth.logout().subscribe({

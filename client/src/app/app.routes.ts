@@ -25,6 +25,21 @@ export const routes: Routes = [
         title: 'Dashboard · RideSync',
         loadComponent: () => import('./features/dashboard/dashboard').then((m) => m.Dashboard),
       },
+      {
+        path: 'bikes',
+        title: 'Garage · RideSync',
+        loadComponent: () => import('./features/bikes/bike-list').then((m) => m.BikeList),
+      },
+      {
+        path: 'bikes/new',
+        title: 'Add a bike · RideSync',
+        loadComponent: () => import('./features/bikes/bike-form').then((m) => m.BikeForm),
+      },
+      {
+        path: 'bikes/:bikeId/edit',
+        title: 'Edit bike · RideSync',
+        loadComponent: () => import('./features/bikes/bike-form').then((m) => m.BikeForm),
+      },
     ],
   },
   { path: '**', redirectTo: '' },

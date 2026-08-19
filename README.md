@@ -131,8 +131,8 @@ timezone change. `timestamptz` is used only for audit columns.
 |---|---|---|
 | 0 | Analysis and architecture | Done |
 | 1 | Foundation — workspace, database, auth, error handling, app shell | Done |
-| 2 | Bike management | Next |
-| 3 | Trip management and fuel estimation | |
+| 2 | Bike management | Done |
+| 3 | Trip management and fuel estimation | Next |
 | 4 | Expenses and fuel logs | |
 | 5 | Checklist | |
 | 6 | Trip dashboard | |
